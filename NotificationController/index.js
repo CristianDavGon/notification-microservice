@@ -18,7 +18,7 @@ const twilioClient = twilio(
 app.use(express.json());
 
 app.post("/purchase-notification", async (req, res) => {
-  const { email, phone } = req.body; 
+  const { email, phone } = req.body;
 
   // Comprobamos que se han recibido los datos necesarios, por ahora solo email y phone
   if (!email || !phone) {
@@ -27,18 +27,12 @@ app.post("/purchase-notification", async (req, res) => {
     });
   }
 
-
-const mensajeFijoSMS = `Estimado cliente,
-
+  const mensajeFijoSMS = `Estimado cliente,
 ¡Gracias por elegir Estilo Urbano! Apreciamos sinceramente tu compra y la confianza que has depositado en nosotros. Estamos comprometidos a ofrecerte productos de alta calidad y un servicio excepcional.
-
 Si tienes alguna pregunta o necesitas asistencia, no dudes en contactarnos. Esperamos verte de nuevo pronto.
-
 ¡Que tengas un excelente día!
-
 Atentamente,
 El equipo de Estilo Urbano`;
-
 
   const subject = "Gracias por tu compra en Estilo Urbano";
 
@@ -49,7 +43,7 @@ El equipo de Estilo Urbano`;
       from: "estilourbano.contactoservice@gmail.com",
       templateId: process.env.SENDGRID_TEMPLATE_ID,
       dynamic_template_data: {
-        subject: subject
+        subject: subject,
       },
     });
     console.log("Correo enviado con éxito");
